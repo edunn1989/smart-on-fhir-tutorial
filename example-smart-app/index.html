@@ -147,7 +147,9 @@
 			patientApi.fetchAll({type: 'MedicationStatement'}).then(function(response) {
 				var retString = "<table class='dataTable'>";
 				response.forEach(function(medObj,idx){
-					retString += "<tr><td>"+medObj.medicationCodeableConcept.text+"</td></tr>";
+					if (medObj.medicationCodeableConcept && medObj.medicationCodeableConcept.text) {
+						retString += "<tr><td>"+medObj.medicationCodeableConcept.text+"</td></tr>";
+					}
 				});
 				retString += "</table>";
 				$("#medStatementDiv").html(retString);
